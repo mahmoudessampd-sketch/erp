@@ -3289,6 +3289,263 @@ kbd {
     width: 52px;
   }
 }
+
+/* ===== شريط الأوامر السريعة الجانبي ===== */
+#qbar {
+  position: fixed;
+  inset-inline-end: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 7px;
+  border-radius: 22px;
+  background: var(--glass);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -14px rgba(11, 17, 96, 0.35);
+}
+#qbar::before {
+  content: '';
+  position: absolute;
+  inset: 12px auto 12px -1px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--grad-fx);
+}
+#qbar:empty {
+  display: none;
+}
+.qb-cap {
+  font: 800 10.5px var(--font-head);
+  color: var(--ink3);
+  padding: 0 0 4px;
+}
+.qb-b {
+  width: 62px;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  padding: 8px 2px 6px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ink2);
+  cursor: pointer;
+  font: 700 11.5px var(--font-head);
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.qb-b .ic {
+  width: 38px;
+  height: 38px;
+  padding: 9px;
+  border-radius: 12px;
+  color: #fff;
+  background: var(--grad-bc);
+  box-shadow: 0 6px 14px -6px rgba(42, 75, 245, 0.6);
+  transition: transform 0.15s;
+}
+.qb-b:nth-of-type(2) .ic {
+  background: linear-gradient(135deg, #2a4bf5, #6a2cf0);
+}
+.qb-b:nth-of-type(3) .ic {
+  background: linear-gradient(135deg, #6a2cf0, #b010e2);
+}
+.qb-b:nth-of-type(4) .ic {
+  background: linear-gradient(135deg, #12d3f5, #6a2cf0);
+}
+.qb-b:nth-of-type(5) .ic {
+  background: linear-gradient(135deg, #0b1160, #2a4bf5);
+}
+.qb-b:nth-of-type(6) .ic {
+  background: linear-gradient(135deg, #b010e2, #2a4bf5);
+}
+.qb-b:hover,
+.qb-b.on {
+  background: var(--tint);
+  color: var(--ink);
+}
+.qb-b:hover .ic,
+.qb-b.on .ic {
+  transform: translateY(-2px) scale(1.05);
+}
+.qb-b:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--royal) 40%, transparent);
+}
+#main {
+  padding-inline-end: 112px;
+}
+/* اللوحات المنبثقة */
+.qb-pop {
+  position: fixed;
+  z-index: 60;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--sh-3);
+  padding: 10px;
+  animation: qbIn 0.16s var(--ease);
+  overflow: hidden;
+}
+.qb-pop::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--grad-fx);
+}
+@keyframes qbIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+.qb-menu {
+  display: grid;
+  gap: 4px;
+  min-width: 190px;
+}
+.qb-menu b {
+  font-size: 12.5px;
+  color: var(--ink3);
+  padding: 4px 8px 2px;
+}
+.qb-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 11px;
+  background: none;
+  color: var(--ink);
+  font: 700 14px var(--font);
+  cursor: pointer;
+  text-align: start;
+}
+.qb-menu button:hover {
+  background: var(--tint);
+}
+.qb-menu .ic {
+  width: 20px;
+  height: 20px;
+  color: var(--royal);
+}
+.qb-calc {
+  width: 272px;
+  padding: 12px;
+}
+.qb-calc-h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.qb-calc-h b {
+  font-size: 14px;
+}
+.qb-calc-h button {
+  border: 1px solid var(--line);
+  background: var(--card2);
+  border-radius: 9px;
+  padding: 2px 10px;
+  font: 700 12px var(--font);
+  color: var(--royal);
+  cursor: pointer;
+}
+.qb-calc .cd {
+  direction: ltr;
+  text-align: right;
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  color: #fff;
+  background: linear-gradient(120deg, #0b1160, #2a4bf5 70%, #6a2cf0);
+  min-height: 74px;
+}
+.qb-calc .cx {
+  font: 700 22px var(--font-num);
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+.qb-calc .cr {
+  font: 600 14px var(--font-num);
+  color: #9fefff;
+  min-height: 20px;
+}
+.qb-calc .ck {
+  direction: ltr;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.qb-calc .ck button {
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card2);
+  color: var(--ink);
+  font: 700 17px var(--font-num);
+  cursor: pointer;
+}
+.qb-calc .ck button:hover {
+  border-color: var(--royal);
+}
+.qb-calc .ck .op {
+  color: var(--royal);
+  background: var(--tint);
+}
+.qb-calc .ck .fn {
+  color: var(--bad);
+}
+.qb-calc .ck .eq {
+  background: var(--grad-fx);
+  color: #fff;
+  border: 0;
+}
+.qb-calc .ch {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  color: var(--ink3);
+  text-align: center;
+}
+@media (max-width: 760px) {
+  #qbar {
+    top: auto;
+    transform: none;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    inset-inline: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 6px;
+    border-radius: 20px;
+  }
+  #qbar::before {
+    inset: -1px 16px auto 16px;
+    width: auto;
+    height: 3px;
+  }
+  .qb-cap {
+    display: none;
+  }
+  .qb-b {
+    width: auto;
+    flex: 1;
+    font-size: 10.5px;
+  }
+  .qb-b .ic {
+    width: 34px;
+    height: 34px;
+    padding: 8px;
+  }
+  #main {
+    padding-inline-end: 16px;
+    padding-bottom: 110px;
+  }
+}
 </style>
 <!-- خط اختياري: عند عدم توفر الإنترنت يُستخدم خط النظام -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3296,7 +3553,7 @@ kbd {
 </head>
 <body>
 <div id="login" hidden></div>
-<div id="app" hidden><aside id="side"></aside><header id="top"></header><main id="main"></main></div>
+<div id="app" hidden><aside id="side"></aside><header id="top"></header><main id="main"></main><nav id="qbar" aria-label="أوامر سريعة"></nav></div>
 <div id="modals"></div><div id="toasts" aria-live="polite"></div><div id="print-root"></div><div id="tip" hidden></div><div id="busybar" aria-hidden="true"></div>
 <noscript>يتطلب النظام تفعيل JavaScript.</noscript>
 <script>/*!
@@ -8728,6 +8985,7 @@ function render() {
   side.innerHTML = sidebar().s;
   side.scrollTop = sc;
   top.innerHTML = topbar().s;
+  $('#qbar').innerHTML = quickBar().s;
   tickClock();
   const fn = PAGES[route.name];
   let perm = ROUTE_PERM[route.name];
@@ -8849,6 +9107,190 @@ function bindGlobal() {
     if (Auth.user) render();
   });
 }
+
+/* ===== 21-1-quickbar: شريط الأوامر السريعة الجانبي والآلة الحاسبة ===== */
+ICON.ret = 'M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11';
+ICON.calc = 'M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM8 6h8v4H8zM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01';
+
+/* [الوحدة، الإجراء، التسمية، الأيقونة، الأمر، البيانات] أو قائمة فرعية بدل الأمر */
+const QBAR = [
+  ['sales', 'add', 'مبيعات', 'sales', 'فاتورة مبيعات', 'newDoc', { k: 'si' }],
+  ['purchases', 'add', 'مشتريات', 'buy', 'فاتورة مشتريات', 'newDoc', { k: 'pi' }],
+  ['', '', 'مرتجع', 'ret', 'مرتجع', 'qbFly', { f: 'ret' }],
+  ['treasury', 'add', 'سند', 'receipt', 'سند قبض أو صرف', 'qbFly', { f: 'vch' }],
+  ['journal', 'add', 'قيد', 'journal', 'قيد يومية', 'newJournal', {}],
+  ['', '', 'حاسبة', 'calc', 'الآلة الحاسبة', 'qbCalc', {}]
+];
+const QB_FLY = {
+  ret: [
+    ['sales', 'مرتجع مبيعات', 'newDoc', { k: 'sr' }],
+    ['purchases', 'مرتجع مشتريات', 'newDoc', { k: 'pret' }]
+  ],
+  vch: [
+    ['treasury', 'سند قبض', 'newVoucher', { k: 'R' }],
+    ['treasury', 'سند صرف', 'newVoucher', { k: 'P' }]
+  ]
+};
+const qbFlyItems = k => QB_FLY[k].filter(x => can(x[0], 'add'));
+function quickBar() {
+  const items = QBAR.filter(q => (q[0] ? can(q[0], q[1]) : q[5] !== 'qbFly' || qbFlyItems(q[6].f).length));
+  return h`<span class="qb-cap">سريع</span>${items.map(
+    ([, , lb, ic, title, act, data]) =>
+      h`<button class="qb-b" data-act="${act}" ${Object.entries(data).map(([k, v]) => h`data-${k}="${v}" `)}title="${title}" aria-label="${title}">${icon(ic)}<span>${lb}</span></button>`
+  )}`;
+}
+const qbClose = () => {
+  $$('.qb-pop').forEach(x => x.remove());
+  $$('.qb-b.on').forEach(x => x.classList.remove('on'));
+};
+/* لوحة منبثقة بجانب الزر */
+function qbPop(btnEl, cls, html) {
+  const open = btnEl.classList.contains('on');
+  qbClose();
+  if (open) return null;
+  btnEl.classList.add('on');
+  const p = document.createElement('div');
+  p.className = 'qb-pop ' + cls;
+  p.innerHTML = html;
+  document.body.append(p);
+  const r = btnEl.getBoundingClientRect(),
+    narrow = innerWidth <= 760;
+  if (narrow) {
+    p.style.bottom = innerHeight - r.top + 10 + 'px';
+    p.style.left = Math.max(8, Math.min(innerWidth - p.offsetWidth - 8, r.left + r.width / 2 - p.offsetWidth / 2)) + 'px';
+  } else {
+    p.style.left = r.right + 12 + 'px';
+    p.style.top = Math.max(8, Math.min(innerHeight - p.offsetHeight - 8, r.top + r.height / 2 - p.offsetHeight / 2)) + 'px';
+  }
+  return p;
+}
+ACT.qbFly = (d, el) => {
+  const L = qbFlyItems(d.f);
+  qbPop(
+    el,
+    'qb-menu',
+    h`<b>${d.f === 'ret' ? 'نوع المرتجع' : 'نوع السند'}</b>${L.map(
+      ([, t, act, data]) =>
+        h`<button data-act="qbGo" data-go="${act}" ${Object.entries(data).map(([k, v]) => h`data-${k}="${v}" `)}>${icon(d.f === 'ret' ? 'ret' : act === 'newVoucher' && data.k === 'P' ? 'wallet' : 'receipt')}${t}</button>`
+    )}`.s
+  );
+};
+ACT.qbGo = d => {
+  qbClose();
+  ACT[d.go]({ ...d });
+};
+
+/* ---- الآلة الحاسبة: محلل حسابي بسيط بدون eval ---- */
+function calcEval(src) {
+  const t = String(src).replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/,/g, '');
+  let i = 0;
+  const peek = () => t[i],
+    readNum = () => {
+      const m = /^\d*\.?\d+(?:%)?/.exec(t.slice(i));
+      if (!m) throw new Error('صيغة غير صحيحة');
+      i += m[0].length;
+      return m[0].endsWith('%') ? parseFloat(m[0]) / 100 : parseFloat(m[0]);
+    };
+  function factor() {
+    if (peek() === '-') { i++; return -factor(); }
+    if (peek() === '+') { i++; return factor(); }
+    if (peek() === '(') { i++; const v = expr(); if (peek() !== ')') throw new Error('قوس ناقص'); i++; return v; }
+    return readNum();
+  }
+  function term() {
+    let v = factor();
+    while (peek() === '*' || peek() === '/') {
+      const op = t[i++], r = factor();
+      if (op === '/' && r === 0) throw new Error('لا يمكن القسمة على صفر');
+      v = op === '*' ? v * r : v / r;
+    }
+    return v;
+  }
+  function expr() {
+    let v = term();
+    while (peek() === '+' || peek() === '-') {
+      const op = t[i++],
+        pc = /^(\d*\.?\d+)%(?=$|[+\-)])/.exec(t.slice(i));
+      /* 1000 + 15% = 1150 كما في الآلات الحاسبة */
+      let r;
+      if (pc) {
+        i += pc[0].length;
+        r = (v * parseFloat(pc[1])) / 100;
+      } else r = term();
+      v = op === '+' ? v + r : v - r;
+    }
+    return v;
+  }
+  const v = expr();
+  if (i < t.length) throw new Error('صيغة غير صحيحة');
+  return Math.round(v * 1e8) / 1e8;
+}
+const CALC_KEYS = ['C', '⌫', '%', '÷', '7', '8', '9', '×', '4', '5', '6', '−', '1', '2', '3', '+', '00', '0', '.', '='];
+let calcExpr = '';
+const calcShow = (res = '') => {
+  const x = $('.qb-calc .cx'), r = $('.qb-calc .cr');
+  if (x) x.textContent = calcExpr || '0';
+  if (r) r.textContent = res;
+};
+function calcKey(k) {
+  if (k === 'C') calcExpr = '';
+  else if (k === '⌫') calcExpr = calcExpr.slice(0, -1);
+  else if (k === '=') {
+    try {
+      const v = calcEval(calcExpr || '0');
+      calcShow('= ' + v.toLocaleString('en-US', { maximumFractionDigits: 8 }));
+      calcExpr = String(v);
+      return;
+    } catch (e) {
+      calcShow(e.message);
+      return;
+    }
+  } else calcExpr += k;
+  let live = '';
+  try {
+    if (/[+−×÷%-]/.test(calcExpr)) live = '= ' + calcEval(calcExpr).toLocaleString('en-US', { maximumFractionDigits: 8 });
+  } catch (e) {
+    live = '';
+  }
+  calcShow(live);
+}
+ACT.qbCalc = (d, el) => {
+  const p = qbPop(
+    el,
+    'qb-calc',
+    h`<div class="qb-calc-h"><b>الآلة الحاسبة</b><button data-act="calcCopy" title="نسخ الناتج">نسخ</button></div><div class="cd"><div class="cx">0</div><div class="cr"></div></div><div class="ck">${CALC_KEYS.map(
+      k => h`<button data-act="calcK" data-k="${k}" class="${/[÷×−+=%]/.test(k) ? 'op' : k === 'C' || k === '⌫' ? 'fn' : ''}${k === '=' ? ' eq' : ''}">${k}</button>`
+    )}</div><p class="ch">تقبل لوحة المفاتيح، و Enter للنتيجة</p>`.s
+  );
+  if (p) calcShow();
+};
+ACT.calcK = d => calcKey(d.k);
+ACT.calcCopy = () => {
+  let v = '';
+  try {
+    v = String(calcEval(calcExpr || '0'));
+  } catch (e) {
+    v = '';
+  }
+  navigator.clipboard?.writeText(v).then(
+    () => toast('تم نسخ الناتج ' + v),
+    () => toast('تعذر النسخ', 'bad')
+  );
+};
+document.addEventListener('keydown', e => {
+  if (!$('.qb-calc') || e.target.closest('input,textarea,select')) return;
+  const map = { '*': '×', '/': '÷', '-': '−', Enter: '=', '=': '=', Backspace: '⌫', Escape: 'X', Delete: 'C' };
+  const k = map[e.key] || (/^[\d.+%]$/.test(e.key) ? e.key : '');
+  if (!k) return;
+  e.preventDefault();
+  if (k === 'X') qbClose();
+  else calcKey(k);
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.qb-pop,.qb-b')) qbClose();
+});
+window.addEventListener('resize', qbClose);
+window.addEventListener('hashchange', qbClose);
 
 /* ===== 21-export: Excel حقيقي (xlsx) وPDF وطباعة، دون خدمات خارجية ===== */
 const download = (blob, name) => {
@@ -9308,11 +9750,8 @@ const quickActs = () =>
 
 /* ---- الأقسام ---- */
 function dashHero(F) {
-  const Q = quickActs(),
-    who = String(Auth.user.name || '').split(' ')[0],
-    tools = Q.length
-      ? h`<div class="head-tools">${btn(h`${icon('plus')}${Q[0].t}`, Q[0].act, Q[0].data, 'primary')}${Q.slice(1, 3).map(q => btn(q.t, q.act, q.data))}</div>`
-      : '';
+  const who = String(Auth.user.name || '').split(' ')[0],
+    tools = '';
   return h`<section class="dash-hero"><img class="hero-mark" src="${LOGO_MARK}" alt=""><div><p class="eyebrow">${greeting()}، ${who}</p><h1>لوحة التحكم</h1><p class="muted">السنة المالية ${F.y} · ${F.br ? nameOf('branches', F.br) : 'كل الفروع'} · من ${F.from} إلى ${F.to}</p></div>${tools}</section>`;
 }
 function dashKpis(F) {
